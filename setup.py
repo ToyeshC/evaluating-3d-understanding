@@ -13,7 +13,6 @@ setup(
     install_requires=[
         "joblib==1.4.2",
         "scipy==1.15.2",
-        # "triton==2.2.0",
         "triton==3.2.0",
         "numpy==1.26.4",
         "tqdm==4.67.1"

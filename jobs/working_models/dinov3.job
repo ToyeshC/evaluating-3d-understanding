@@ -17,24 +17,9 @@ module purge
 module load 2023
 module load Miniconda3/23.5.2-0
 
-# export HF_TOKEN='hf_xxx'
-# export HUGGINGFACE_HUB_TOKEN="$HF_TOKEN"
-# # sanity check
-# python - <<'PY'
-# from huggingface_hub import whoami
-# import os
-# print("HF user:", whoami(token=os.environ.get("HUGGINGFACE_HUB_TOKEN","<none>"))["name"])
-# PY
-
-
-# Read Hugging Face token from .env. It should contain:
-# HUGGINGFACE_HUB_TOKEN=hf_xxx
-if [ -f ".env" ]; then
-  set -a
-  . .env
-  set +a
-fi
-
+# Activate the environment
+# Use the conda 'hook' so activation works in non-interactive SLURM jobs.
+# 'source activate' is deprecated and may fail; this is the modern, reliable way.
 eval "$(/sw/arch/RHEL8/EB_production/2023/software/Miniconda3/23.5.2-0/bin/conda shell.bash hook)"
 conda activate hbird
 

@@ -256,13 +256,14 @@ def load_model(args):
 
         return model.eval()
 
-    if any(tag in repo for tag in ("siglip2", "radio", "webssl")):
+    if any(tag in repo for tag in ("siglip2", "radio", "webssl", "dinov3")):
         print(f"Loading model from Hugging Face: {args.model_repo}")
         model = AutoModel.from_pretrained(
             args.model_repo,
             ignore_mismatched_sizes=True,  # allow HF to skip hard mismatches
             trust_remote_code=True,
             revision=rev,
+            token=os.getenv("HUGGINGFACE_HUB_TOKEN"),
         )
         interpolate_pos_embed(model, args.input_size, args.patch_size)
         return model.eval()
@@ -371,6 +372,14 @@ def token_features(args, model, imgs):
         # DINOv2 returns patch tokens only (no CLS) under 'x_norm_patchtokens'
         # Shape: [B, N, D]
         return model.forward_features(imgs)["x_norm_patchtokens"], None
+
+    elif "dinov3" in args.model_repo.lower():
+        # HF DINOv3: last_hidden_state has shape [B, 1+R+N, D]
+        # where 1 = CLS token, R = register tokens, N = patch tokens
+        # Shape: [B, N, D], we keep only the patch tokens
+        out = model(pixel_values=imgs, output_hidden_states=True)
+        R = getattr(model.config, "num_register_tokens", 0)
+        return out.last_hidden_state[:, 1 + R :, :], None
 
     elif "clip" in args.model_repo.lower():
         # CLIP returns [CLS] + patch tokens → we remove CLS

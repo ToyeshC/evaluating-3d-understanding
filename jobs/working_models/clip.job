@@ -17,6 +17,10 @@ module purge
 module load 2023
 module load Miniconda3/23.5.2-0
 
+# Activate the environment
+# source activate hbird
+# Use the conda 'hook' so activation works in non-interactive SLURM jobs.
+# 'source activate' is deprecated and may fail; this is the modern, reliable way.
 eval "$(/sw/arch/RHEL8/EB_production/2023/software/Miniconda3/23.5.2-0/bin/conda shell.bash hook)"
 conda activate hbird
 

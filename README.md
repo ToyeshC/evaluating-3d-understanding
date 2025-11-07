@@ -49,18 +49,49 @@ cd open-hummingbird-eval
 # Download and install from https://github.com/colmap/colmap
 ```
 
-3. Install the required dependencies:
+3. Download MVImgNet data
+
+Download the category folders and corresponding masks into `datasets/mvimgnet/`. We obtained them from the internal [SharePoint link](https://cuhko365.sharepoint.com/sites/GAP_Lab_MVImgNet/Shared%20Documents/Forms/AllItems.aspx),
+but you can also follow the [official MVImgNet instructions](https://gaplab.cuhk.edu.cn/projects/MVImgNet/).
+
+The expected folder structure is:
+
 ```bash
-pip install torch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 --index-url https://download.pytorch.org/whl/cu121
-pip install lightning==2.4.0
-pip install torchmetrics==1.7.0
-pip install tqdm==4.67.1
-pip install scipy==1.15.2
-pip install joblib==1.4.2
-pip install numpy==1.26.4
-pip install triton==2.2.0
-pip install faiss-gpu-cu12
+datasets/
+└── mvimgnet/
+    ├── 7/
+    ├── 8/
+    ├── 19/
+    ├── 46/
+    ├── 57/
+    ├── 60/
+    ├── 70/
+    ├── 99/
+    ├── 100/
+    ├── 113/
+    ├── 125/
+    ├── 126/
+    ├── 152/
+    ├── 166/
+    ├── 196/
+    └── masks/
+        ├── 7/
+        ├── 8/
+        ├── ...
+        └── 196/
 ```
+
+4. Create binned dataset
+
+Use the Jupyter notebook examples/mvimgnet_create_bins.ipynb
+to generate a binned version of the MVImgNet dataset based on view angle intervals.
+
+5. Set up the environment
+
+See the following SLURM job scripts:
+- `jobs/create_hbird_env.job` - creates the Conda environment
+- `jobs/install_hbird_repo.job` - installs the repository and dependencies
+
 
 ## Usage
 

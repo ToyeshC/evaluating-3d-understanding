@@ -1,0 +1,47 @@
+CUDA_VISIBLE_DEVICES=0
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+2025-11-07 15:47:23.056339: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-11-07 15:47:23.150765: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:477] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1762526843.194331 1500281 cuda_dnn.cc:8310] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1762526843.207495 1500281 cuda_blas.cc:1418] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2025-11-07 15:47:23.292079: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Args: Namespace(seed=42, model_repo='facebook/dinov3-vitb16-pretrain-lvd1689m', model_name='', d_model=768, revision=None, input_size=512, patch_size=16, data_dir='./datasets/split_angles_mvimagenet', dataset_name='mvimgnet', train_fs_path=None, val_fs_path=None, train_bins='90', val_bins='0', batch_size=64, augmentation_epoch=1, memory_size=None, num_workers=8, n_neighbours=30, nn_method='faiss', nn_params=None, return_knn_details=None)
+Loading model from Hugging Face: facebook/dinov3-vitb16-pretrain-lvd1689m
+The model does not support automatic embedding interpolation, 
+but manual embedding interpolation will be applied if the input_size provided does not match 
+the input_size on which the model was trained.
+FAISS sharding not used (device: cuda, GPUs available: 1)
+📦 MVImgNet → Train bins: ['90']
+📦 MVImgNet → Val bins:   ['0']
+✅ MVImgNet Loaded → Train: 3701 | Val: 0
+Augmentation loop:   0%|          | 0/1 [00:00<?, ?it/s]
+Memory Creation loop:   0%|          | 0/57 [00:00<?, ?it/s][A
+Memory Creation loop:   2%|▏         | 1/57 [00:14<13:33, 14.53s/it][A
+Memory Creation loop:  18%|█▊        | 10/57 [00:25<01:40,  2.13s/it][A
+Memory Creation loop:  33%|███▎      | 19/57 [00:36<01:02,  1.64s/it][A
+Memory Creation loop:  49%|████▉     | 28/57 [00:47<00:41,  1.43s/it][A
+Memory Creation loop:  68%|██████▊   | 39/57 [00:57<00:21,  1.21s/it][A
+Memory Creation loop:  68%|██████▊   | 39/57 [01:09<00:21,  1.21s/it][A
+Memory Creation loop:  72%|███████▏  | 41/57 [01:19<00:35,  2.23s/it][A
+Memory Creation loop:  93%|█████████▎| 53/57 [01:30<00:06,  1.61s/it][AMemory Creation loop: 100%|██████████| 57/57 [01:33<00:00,  1.65s/it]
+Augmentation loop: 100%|██████████| 1/1 [01:33<00:00, 93.96s/it]Augmentation loop: 100%|██████████| 1/1 [01:33<00:00, 93.96s/it]
+Using Replicated index
+✅ MVImgNet Loaded → Train: 0 | Val: 3701
+Evaluation loop:   0%|          | 0/57 [00:00<?, ?it/s]Evaluation loop:   2%|▏         | 1/57 [00:28<26:13, 28.10s/it]Evaluation loop:   4%|▎         | 2/57 [00:50<22:55, 25.00s/it]Evaluation loop:   5%|▌         | 3/57 [01:13<21:37, 24.02s/it]Evaluation loop:   7%|▋         | 4/57 [01:36<20:48, 23.56s/it]Evaluation loop:   9%|▉         | 5/57 [01:59<20:11, 23.30s/it]Evaluation loop:  11%|█         | 6/57 [02:22<19:40, 23.15s/it]Evaluation loop:  12%|█▏        | 7/57 [02:45<19:12, 23.06s/it]Evaluation loop:  14%|█▍        | 8/57 [03:08<18:47, 23.00s/it]Evaluation loop:  16%|█▌        | 9/57 [03:30<18:21, 22.96s/it]Evaluation loop:  18%|█▊        | 10/57 [03:53<17:58, 22.95s/it]Evaluation loop:  19%|█▉        | 11/57 [04:16<17:35, 22.95s/it]Evaluation loop:  21%|██        | 12/57 [04:39<17:12, 22.94s/it]Evaluation loop:  23%|██▎       | 13/57 [05:02<16:51, 22.98s/it]Evaluation loop:  25%|██▍       | 14/57 [05:25<16:30, 23.02s/it]Evaluation loop:  [2025-11-07T15:57:25.021] error: *** JOB 15821777 ON gcn18 CANCELLED AT 2025-11-07T15:57:25 DUE TO TIME LIMIT ***
+26%|██▋       | 15/57 [05:49<16:08, 23.06s/it]Evaluation loop:  28%|██▊       | 16/57 [06:12<15:46, 23.09s/it]Evaluation loop:  30%|██▉       | 17/57 [06:35<15:24, 23.12s/it]Evaluation loop:  32%|███▏      | 18/57 [06:58<15:02, 23.15s/it]Evaluation loop:  33%|███▎      | 19/57 [07:21<14:40, 23.17s/it]Evaluation loop:  35%|███▌      | 20/57 [07:45<14:17, 23.19s/it][2025-11-07T15:57:25.021] error: *** STEP 15821777.0 ON gcn18 CANCELLED AT 2025-11-07T15:57:25 DUE TO TIME LIMIT ***

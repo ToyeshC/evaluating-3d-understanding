@@ -1,9 +1,8 @@
---extra-index-url https://download.pytorch.org/whl/cu121
-
-# Core PyTorch stack (CUDA 12.1 wheels)
-torch==2.2.2+cu121
-torchvision==0.17.2+cu121
-torchaudio==2.2.2+cu121
+# ---- PyTorch (CUDA 12.4) ---- 
+--extra-index-url https://download.pytorch.org/whl/cu124 
+torch==2.6.0 
+torchvision==0.21.0 
+torchaudio==2.6.0 
 
 # Lightning ecosystem
 lightning==2.4.0
@@ -15,7 +14,8 @@ tqdm==4.67.1
 scipy==1.15.2
 joblib==1.4.2
 numpy==1.26.4
-triton==2.2.0
+triton==3.2.0 
+typing_extensions>=4.8
 
 # Nearest neighbor tools
 faiss-gpu-cu12
