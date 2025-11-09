@@ -44,5 +44,5 @@ scikit-learn
 seaborn
 pandas
 
-# Needed for the plotting the results
+# Used to generate LaTeX tables
 jinja2
