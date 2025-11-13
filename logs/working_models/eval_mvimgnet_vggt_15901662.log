@@ -1,0 +1,67 @@
+CUDA_VISIBLE_DEVICES=0,1,2,3
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+2025-11-11 11:31:19.525271: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-11-11 11:31:19.545635: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:477] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1762857079.567199 1604047 cuda_dnn.cc:8310] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1762857079.573798 1604047 cuda_blas.cc:1418] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2025-11-11 11:31:19.596467: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+/home/jbibo/.local/lib/python3.11/site-packages/torch/hub.py:330: UserWarning: You are about to download and run code from an untrusted repository. In a future release, this won't be allowed. To add the repository to your trusted list, change the command to {calling_fn}(..., trust_repo=False) and a command prompt will appear asking for an explicit confirmation of trust, or load(..., trust_repo=True), which will assume that the prompt is to be answered with 'yes'. You can also use load(..., trust_repo='check') which will only prompt for confirmation if the repo is not already trusted. This will eventually be the default behaviour
+  warnings.warn(
+Args: Namespace(seed=42, model_repo='facebook/VGGT-1B', model_name='vggt-1b', d_model=1536, revision=None, input_size=504, patch_size=14, data_dir='./datasets/split_angles_mvimagenet', dataset_name='mvimgnet', train_fs_path=None, val_fs_path=None, train_bins='90', val_bins='0', batch_size=64, augmentation_epoch=1, memory_size=None, num_workers=32, n_neighbours=30, nn_method='faiss', nn_params=None, return_knn_details=None)
+Loading model via torch.hub: facebook/VGGT-1B, vggt-1b
+Traceback (most recent call last):
+  File "/gpfs/home2/jbibo/open-hummingbird-eval/python_scripts/run_eval.py", line 252, in <module>
+    main()
+  File "/gpfs/home2/jbibo/open-hummingbird-eval/python_scripts/run_eval.py", line 134, in main
+    model = load_model(args)
+            ^^^^^^^^^^^^^^^^
+  File "/gpfs/home2/jbibo/open-hummingbird-eval/hbird/utils/loading_models.py", line 211, in load_model
+    model = torch.hub.load(args.model_repo, name, pretrained=True)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jbibo/.local/lib/python3.11/site-packages/torch/hub.py", line 638, in load
+    repo_or_dir = _get_cache_or_reload(
+                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jbibo/.local/lib/python3.11/site-packages/torch/hub.py", line 258, in _get_cache_or_reload
+    _validate_not_a_forked_repo(repo_owner, repo_name, ref)
+  File "/home/jbibo/.local/lib/python3.11/site-packages/torch/hub.py", line 203, in _validate_not_a_forked_repo
+    response = json.loads(_read_url(Request(url, headers=headers)))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jbibo/.local/lib/python3.11/site-packages/torch/hub.py", line 185, in _read_url
+    with urlopen(url) as r:
+         ^^^^^^^^^^^^
+  File "/home/jbibo/.conda/envs/hbird/lib/python3.11/urllib/request.py", line 216, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jbibo/.conda/envs/hbird/lib/python3.11/urllib/request.py", line 525, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/jbibo/.conda/envs/hbird/lib/python3.11/urllib/request.py", line 634, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/home/jbibo/.conda/envs/hbird/lib/python3.11/urllib/request.py", line 563, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jbibo/.conda/envs/hbird/lib/python3.11/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/home/jbibo/.conda/envs/hbird/lib/python3.11/urllib/request.py", line 643, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+srun: error: gcn70: task 0: Exited with exit code 1
+srun: Terminating StepId=15901662.0
