@@ -218,6 +218,7 @@ def main():
             val_fs_path=args.val_fs_path,
             train_bins=train_bins_list,
             val_bins=val_bins_list,
+            sequence_length=1,
         )
         print(
             f"val_bin(s): {val_bins_list}, Hummingbird Evaluation (mIoU): {np.mean(hbird_miou_list)}"
@@ -244,6 +245,7 @@ def main():
             num_workers=args.num_workers,
             train_fs_path=args.train_fs_path,
             val_fs_path=args.val_fs_path,
+            sequence_length=1,
         )
         print(f"Hummingbird Evaluation (mIoU): {hbird_miou}")
 
