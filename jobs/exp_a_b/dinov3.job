@@ -31,4 +31,4 @@ srun python python_scripts/exp_a_b.py \
   --augmentation_epoch 1 \
   --dataset_name mvimgnet \
   --data_dir datasets/split_angles_mvimagenet \
-  --memory_size 320000
+  --memory_size 1024000
