@@ -3,7 +3,7 @@
 This repository contains code for evaluating vision encoders using the Hummingbird Evaluation method. The project provides tools to assess the performance of various vision models on segmentation tasks, particularly focusing on the Multi-View ImageNet (MVImgNet) dataset.
 
 ![Hummingbird Evaluation Diagram](./images/hbird_icl_diagram.png)
-*Hummingbird Evaluation method diagram from ["Towards In-context Scene Understanding", NeurIPS 2023](https://arxiv.org/abs/2306.01667)*
+_Hummingbird Evaluation method diagram from ["Towards In-context Scene Understanding", NeurIPS 2023](https://arxiv.org/abs/2306.01667)_
 
 ## Features
 
@@ -14,7 +14,7 @@ This repository contains code for evaluating vision encoders using the Hummingbi
 - Comprehensive evaluation metrics including mIoU
 
 ![Example Results](./images/overlay_gt_pred_dino.png)
-*Example of ground truth vs. predictions using DINO model*
+_Example of ground truth vs. predictions using DINO model_
 
 ## Repository Structure
 
@@ -39,12 +39,14 @@ This repository contains code for evaluating vision encoders using the Hummingbi
 ## Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/vpariza/open-hummingbird-eval.git
 cd open-hummingbird-eval
 ```
 
 2. Install COLMAP:
+
 ```bash
 # Download and install from https://github.com/colmap/colmap
 ```
@@ -56,7 +58,7 @@ but you can also follow the [official MVImgNet instructions](https://gaplab.cuhk
 
 The expected folder structure is:
 
-```bash
+```
 datasets/
 └── mvimgnet/
     ├── 7/
@@ -89,9 +91,9 @@ to generate a binned version of the MVImgNet dataset based on view angle interva
 5. Set up the environment
 
 See the following SLURM job scripts:
+
 - `jobs/create_hbird_env.job` - creates the Conda environment
 - `jobs/install_hbird_repo.job` - installs the repository and dependencies
-
 
 ## Usage
 
@@ -125,11 +127,13 @@ The repository includes scripts to set up different environments:
 - `create_tips_env.job`: Environment for TIPS experiments
 
 ## Changes in hbird folder compared to original
+
 - `hbird_eval.py` : Changes in functions `hbird_evaluation` and `evaluate`
 - `eval_metrics.py` : Changes in function `compute`
 - `mvimgnet_data.py` : Added a new dataloader
 
 ## Python scripts folder
+
 - `exp_a_b.py` : Is used for calculating all results
 - `table_reproduction.py` : Used to recreate the table
 
@@ -140,15 +144,16 @@ The `examples/` directory contains several Jupyter notebooks demonstrating diffe
 - `hbird_eval_example_faiss_gpu.ipynb`: Basic evaluation using FAISS GPU
 - `hbird_eval_example_scann.ipynb`: Evaluation using SCANN
 - `hbird_eval_multiview_analysis*.ipynb`: Analysis of multi-view performance with different memory sizes
-- `mvimgnet_create_bins.ipynb` : Sorting MVImgNet to a new dataset folder named `split_angles_mvimagenet`
+- `mvimgnet_create_bins.ipynb` : Sorting MVImgNet into a new dataset folder named `split_angles_mvimagenet`
 - `mvimgnet_masks_vs_preds.ipynb` : Visualization of Dino prediction masks
 
 ![Multi-View Example](./images/new_3_angles_mvimgnet_cat.png)
-*Example of multi-view analysis on MVImgNet dataset*
+_Example of multi-view analysis on MVImgNet dataset_
 
 ## Dataset
 
 The project uses the Multi-View ImageNet (MVImgNet) dataset. The dataset includes:
+
 - Multi-view images with camera extrinsics
 - Segmentation masks
 - Camera parameters (obtained using COLMAP)
@@ -156,26 +161,29 @@ The project uses the Multi-View ImageNet (MVImgNet) dataset. The dataset include
 ### Dataset Download
 
 The MVImgNet dataset can be downloaded from:
+
 - [MVImgNet Dataset](https://1drv.ms/u/s!AnBBK4_o1T9MbXrxhV7BpGdS8tk?e=P7G6F0)
 
 After downloading, you'll need to:
+
 1. Extract the dataset to the `datasets/` directory
-2. Run COLMAP to obtain camera extrinsics
-3. Organize the data according to the structure in `file_sets/`
+2. **IMPORTANT** Make sure to remove any `*_bg_removed.png` images in the MVImgNet folders.
+3. Run COLMAP to obtain camera extrinsics
+4. Organize the data according to the structure in `file_sets/`
 
 ## Contributing
 
-| n  | Name |
-| ------------- | ------------- |
-| 1  |  Brandon Li |
-| 2  |  Emma Boccaletti |
-| 3  |  Julian Bibo |
-| 4  | Lívia Baxová  |
-| 5  |  Toyesh Chakravorty |
-| 6  |  Valentina Lilova |
+| n   | Name               |
+| --- | ------------------ |
+| 1   | Brandon Li         |
+| 2   | Emma Boccaletti    |
+| 3   | Julian Bibo        |
+| 4   | Lívia Baxová       |
+| 5   | Toyesh Chakravorty |
+| 6   | Valentina Lilova   |
 
 Feel free to submit issues and enhancement requests!
 
 ## License
 
-[Add your license information here] 
+[Add your license information here]
