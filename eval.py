@@ -15,9 +15,12 @@ def main(args):
 
     if args.model.startswith("vggt"):
         # VGGT path
+        if args.patch_size != 14:
+            print("[VGGT] Forcing patch size to 14 (VGGT uses stride 14).")
+            args.patch_size = 14
         vggt_model = load_vggt(
             backbone=args.model,
-            ckpt_path=args.vggt_ckpt,VGGTFeatureExtractor
+            ckpt_path=args.vggt_ckpt,
             device=device,
             hf_model_id=args.vggt_hf_id,
         )
@@ -71,6 +74,7 @@ def main(args):
             val_bins=val_bins,
             train_fs_path=train_fs_path,
             val_fs_path=val_fs_path,
+            sequence_length=args.vggt_seq_len,
         )
     else:
         # DINO and similar encoders
@@ -115,6 +119,7 @@ def main(args):
             val_bins=val_bins,
             train_fs_path=train_fs_path,
             val_fs_path=val_fs_path,
+            sequence_length=1,
         )
 
     print(f"Hummingbird Evaluation (mIoU): {hbird_miou}")
@@ -149,6 +154,7 @@ if __name__ == "__main__":
     parser.add_argument("--vggt-ckpt", type=str, default=None, help="Path to VGGT checkpoint (.pt/.pth). Optional when using --vggt-hf-id")
     parser.add_argument("--vggt-hf-id", type=str, default=None, help="Hugging Face model id, e.g. facebook/VGGT-1B")
     parser.add_argument("--vggt-normalize", action="store_true", help="Apply VGGT-specific normalization (if required)")
+    parser.add_argument("--vggt-seq-len", type=int, default=1, help="Sequence length (number of views) per sample for VGGT")
 
     # Data arguments
     parser.add_argument("--data-dir", type=str, default="VOCSegmentation", help="Path to the dataset")
