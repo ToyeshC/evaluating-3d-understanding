@@ -147,6 +147,12 @@ def parse_args():
         action="store_true",
         help="Apply VGGT-specific normalization if required",
     )
+    parser.add_argument(
+        "--vggt_seq_len",
+        default=1,
+        type=int,
+        help="Number of frames per sample when using VGGT",
+    )
 
     return parser.parse_args()
 
@@ -166,6 +172,8 @@ def main():
             args.patch_size = 14
         else:
             assert args.patch_size == 14, "VGGT checkpoint expects patch size 14"
+        if args.vggt_seq_len < 1:
+            raise ValueError("--vggt_seq_len must be >= 1")
         vggt_model = load_vggt(
             backbone=backbone,
             ckpt_path=args.vggt_ckpt,
@@ -246,6 +254,7 @@ def main():
             train_bins=train_bins,
             val_bins=VAL_BINS,
             feature_extractor=feature_extractor,
+            sequence_length=args.vggt_seq_len if feature_extractor is not None else 1,
         )
 
         train_str = "_".join(str(x) for x in sorted(train_bins))
